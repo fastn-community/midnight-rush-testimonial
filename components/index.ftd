@@ -123,7 +123,7 @@ background.solid: $inherited.colors.custom.two
 border-radius.px: 20
 height.fixed.px: 430
 
--- ftd.image: $assets.files.static.landing.dbl-qoutes.svg
+-- ftd.image: $assets.files.static.landing.quotes.svg
 anchor: parent
 left.px: 36
 top.px: 70
@@ -343,5 +343,3 @@ color: $inherited.colors.text
 -- end: ftd.column
 
 -- end: testimonials-card-details
-
-
