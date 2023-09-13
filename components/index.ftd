@@ -1,0 +1,262 @@
+-- import: fastn-community.github.io/testimonial-doc/data
+
+
+
+
+
+
+
+
+
+
+-- component testimonials-card:
+optional caption title:
+data.testimonial list testimonial-list:
+
+-- ftd.column:
+width: fill-container
+
+-- ftd.desktop: 
+
+-- testimonials-card-desktop: $testimonials-card.title
+testimonials: $testimonials-card.testimonial-list
+
+-- end: ftd.desktop
+
+
+-- end: ftd.column
+
+-- end: testimonials-card
+
+
+
+
+
+
+
+
+
+
+
+-- component testimonials-card-desktop:
+optional caption title:
+data.testimonial list testimonials:
+integer $current-slide: 0
+
+-- ftd.column:
+margin-vertical.px: 100
+width: fill-container
+spacing.fixed.px: 32
+align-content: center
+background.solid: $inherited.colors.background.step-1
+border-radius.px: 20
+height.fixed.px: 430
+
+-- ftd.image: $assets.files.images.quotes.svg
+anchor: parent
+left.px: 36
+top.px: 70
+width.fixed.px: 30
+
+-- ftd.text: $testimonials-card-desktop.title
+if: { testimonials-card-desktop.title != NULL }
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+
+-- testimonials-card-details:
+for: obj in $testimonials-card-desktop.testimonials
+title: $obj.title
+user: $obj.user
+designation: $obj.designation
+avatar: $obj.avatar
+text: $obj.text
+index: $LOOP.COUNTER
+$current-slide: $testimonials-card-desktop.current-slide
+
+-- ftd.row:
+spacing.fixed.px: 12
+anchor: parent
+left.px: 36
+bottom.px: 70
+
+-- nav-lists:
+for: obj in $testimonials-card-desktop.testimonials
+index: $LOOP.COUNTER
+$current-slide: $testimonials-card-desktop.current-slide
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: testimonials-card-desktop
+
+
+
+
+
+
+
+
+
+
+-- component nav-lists:
+integer index:
+integer $current-slide:
+
+-- ftd.row:
+width.fixed.px: 13
+height.fixed.px: 13
+border-radius.px: 10
+border-width.px: 1
+$on-click$: $ftd.set-integer($a = $nav-lists.current-slide, v = $nav-lists.index)
+background.solid if { nav-lists.current-slide == nav-lists.index }: $inherited.colors.custom.one
+background.solid: $inherited.colors.custom.six
+border-color: $inherited.colors.custom.seven
+
+-- end: ftd.row
+
+-- end: nav-lists
+
+
+
+
+
+
+
+
+
+
+-- component testimonials-card-mobile:
+optional caption title:
+data.testimonial list testimonials:
+
+-- ftd.column:
+width: fill-container
+spacing.fixed.px: 32
+align-content: center
+min-height.fixed.px: 340
+background.solid: $inherited.colors.custom.two
+border-radius.px: 20
+padding-horizontal.px: 40
+
+-- ftd.text: $testimonials-card-mobile.title
+if: { testimonials-card-mobile.title != NULL }
+role: $inherited.types.heading-small
+color: $inherited.colors.text-strong
+
+-- testimonials-card-details:
+$loop$: $testimonials-card-mobile.testimonials as $obj
+title: $obj.title
+user: $obj.user
+designation: $obj.designation
+avatar: $obj.avatar
+body: $obj.body
+index: $obj.index
+
+-- ftd.row:
+spacing.fixed.px: 12
+
+-- nav-lists:
+$loop$: $testimonials-card-mobile.nav as $obj
+index: $obj.index
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: testimonials-card-mobile
+
+
+
+
+
+
+
+
+
+
+-- component testimonials-card-details:
+optional caption title:
+string user: 
+optional string designation:
+optional ftd.image-src avatar:
+optional body text:
+integer index:
+integer $current-slide: 
+
+
+-- ftd.column:
+width.fixed.px: 830
+width if { ftd.device == "mobile"}: fill-container
+spacing.fixed.px: 32
+align-content: center
+if: { testimonials-card-details.index == testimonials-card-details.current-slide }
+
+-- ftd.text: $testimonials-card-details.title
+if: { testimonials-card-details.title != NULL  }
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text-strong
+
+-- ftd.text: $testimonials-card-details.text
+if: { testimonials-card-details.text != NULL }
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+text-align: center
+
+-- ftd.row:
+spacing.fixed.px: 18
+align-content: center
+
+-- ftd.image:
+if: { testimonials-card-details.avatar != NULL }
+src: $testimonials-card-details.avatar
+width.fixed.px: 12
+
+-- ftd.row:
+if: { ftd.device != "mobile" }
+spacing.fixed.px: 4
+
+-- ftd.row:
+width.fixed.px: 20
+height.fixed.px: 1
+background.solid: $inherited.colors.text
+margin-top.px: 12
+
+-- end: ftd.row
+
+-- ftd.text: $testimonials-card-details.user
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- ftd.text: ,
+if: { testimonials-card-details.designation != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- ftd.text: $testimonials-card-details.designation
+if: { testimonials-card-details.designation != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- end: ftd.row
+
+-- ftd.column:
+if: { ftd.device == "mobile" }
+spacing.fixed.px: 4
+
+-- ftd.text: $testimonials-card-details.user
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- ftd.text: $testimonials-card-details.designation
+if: { testimonials-card-details.designation != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: testimonials-card-details
