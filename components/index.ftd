@@ -64,8 +64,7 @@ faucibus at.
 -- end: list-of-testimonials
 
 
--- testimonials-card:
-testimonials: $list-of-testimonials
+
 
 
 
@@ -82,7 +81,7 @@ testimonials: $list-of-testimonials
 
 -- component testimonials-card:
 optional caption title:
-testimonial list testimonials:
+testimonial list testimonial-list: $list-of-testimonials
 
 -- ftd.column:
 width: fill-container
@@ -90,7 +89,7 @@ width: fill-container
 -- ftd.desktop: 
 
 -- testimonials-card-desktop: $testimonials-card.title
-testimonials: $testimonials-card.testimonials
+testimonials: $testimonials-card.testimonial-list
 
 -- end: ftd.desktop
 
@@ -119,7 +118,7 @@ margin-vertical.px: 100
 width: fill-container
 spacing.fixed.px: 32
 align-content: center
-background.solid: $inherited.colors.custom.two
+background.solid: $inherited.colors.background.step-1
 border-radius.px: 20
 height.fixed.px: 430
 
@@ -263,15 +262,14 @@ integer $current-slide:
 
 
 -- ftd.column:
-;;if: { testimonials-card-details.index == testimonials-card-details.current-slide }
 width.fixed.px: 830
 width if { ftd.device == "mobile"}: fill-container
 spacing.fixed.px: 32
 align-content: center
 
--- ftd.integer: $nav-lists.index
 
--- ftd.integer: $nav-lists.current-slide
+-- ftd.column:
+if: { testimonials-card-details.index == testimonials-card-details.current-slide }
 
 -- ftd.text: $testimonials-card-details.title
 if: { testimonials-card-details.title != NULL  }
@@ -339,6 +337,8 @@ color: $inherited.colors.text
 -- end: ftd.column
 
 -- end: ftd.row
+
+-- end: ftd.column
 
 -- end: ftd.column
 
