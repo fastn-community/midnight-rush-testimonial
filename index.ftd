@@ -27,9 +27,9 @@ license-url: https://github.com/fastn-community.github.io/midnight-rush-testimon
 -- component testimonials:
 caption title:
 optional body subtitle:
-data.testimonial list testimonail-list:
+data.testimonial list testimonial-list:
 
 -- components.testimonials-card:
-testimonial-list: $testimonials.testimonail-list
+testimonial-list: $testimonials.testimonial-list
 
 -- end: testimonials
