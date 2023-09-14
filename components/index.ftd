@@ -23,6 +23,12 @@ testimonials: $testimonials-card.testimonial-list
 
 -- end: ftd.desktop
 
+-- ftd.mobile: 
+
+-- testimonials-card-mobile: $testimonials-card.title
+testimonials: $testimonials-card.testimonial-list
+
+-- end: ftd.mobile
 
 -- end: ftd.column
 
@@ -51,12 +57,10 @@ align-content: center
 background.solid: $inherited.colors.background.step-1
 border-radius.px: 20
 height.fixed.px: 430
+padding.px: 50
 
--- ftd.image: $assets.files.images.quotes.svg
-anchor: parent
-left.px: 36
-top.px: 70
-width.fixed.px: 30
+-- ftd.image: $assets.files.images.dbl-qoutes.svg
+align-self: start
 
 -- ftd.text: $testimonials-card-desktop.title
 if: { testimonials-card-desktop.title != NULL }
@@ -74,10 +78,9 @@ index: $LOOP.COUNTER
 $current-slide: $testimonials-card-desktop.current-slide
 
 -- ftd.row:
-spacing.fixed.px: 12
-anchor: parent
-left.px: 36
-bottom.px: 70
+align-content: bottom-left
+width: fill-container
+spacing.fixed.px: 4
 
 -- nav-lists:
 for: obj in $testimonials-card-desktop.testimonials
@@ -107,11 +110,9 @@ integer $current-slide:
 width.fixed.px: 13
 height.fixed.px: 13
 border-radius.px: 10
-border-width.px: 1
 $on-click$: $ftd.set-integer($a = $nav-lists.current-slide, v = $nav-lists.index)
-background.solid if { nav-lists.current-slide == nav-lists.index }: $inherited.colors.custom.one
-background.solid: $inherited.colors.custom.six
-border-color: $inherited.colors.custom.seven
+background.solid if { nav-lists.current-slide == nav-lists.index }: $inherited.colors.cta-primary.base
+background.solid: $inherited.colors.text-strong
 
 -- end: ftd.row
 
@@ -129,6 +130,7 @@ border-color: $inherited.colors.custom.seven
 -- component testimonials-card-mobile:
 optional caption title:
 data.testimonial list testimonials:
+integer $current-slide: 0
 
 -- ftd.column:
 width: fill-container
@@ -145,20 +147,23 @@ role: $inherited.types.heading-small
 color: $inherited.colors.text-strong
 
 -- testimonials-card-details:
-$loop$: $testimonials-card-mobile.testimonials as $obj
+for: obj in $testimonials-card-mobile.testimonials
 title: $obj.title
 user: $obj.user
 designation: $obj.designation
 avatar: $obj.avatar
-body: $obj.body
-index: $obj.index
+text: $obj.text
+index: $LOOP.COUNTER
+$current-slide: $testimonials-card-mobile.current-slide
 
 -- ftd.row:
 spacing.fixed.px: 12
 
 -- nav-lists:
-$loop$: $testimonials-card-mobile.nav as $obj
-index: $obj.index
+for: obj in $testimonials-card-mobile.testimonials
+index: $LOOP.COUNTER
+$current-slide: $testimonials-card-mobile.current-slide
+
 
 -- end: ftd.row
 
@@ -184,7 +189,6 @@ optional body text:
 integer index:
 integer $current-slide: 
 
-
 -- ftd.column:
 width.fixed.px: 830
 width if { ftd.device == "mobile"}: fill-container
@@ -204,25 +208,18 @@ color: $inherited.colors.text-strong
 text-align: center
 
 -- ftd.row:
-spacing.fixed.px: 18
-align-content: center
+spacing.fixed.px: 12
 
 -- ftd.image:
 if: { testimonials-card-details.avatar != NULL }
 src: $testimonials-card-details.avatar
-width.fixed.px: 12
+width.fixed.px: 24
+border-radius.px: 50
 
 -- ftd.row:
 if: { ftd.device != "mobile" }
 spacing.fixed.px: 4
 
--- ftd.row:
-width.fixed.px: 20
-height.fixed.px: 1
-background.solid: $inherited.colors.text
-margin-top.px: 12
-
--- end: ftd.row
 
 -- ftd.text: $testimonials-card-details.user
 role: $inherited.types.copy-regular
