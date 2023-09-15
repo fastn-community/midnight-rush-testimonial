@@ -80,7 +80,7 @@ $current-slide: $testimonials-card-desktop.current-slide
 -- ftd.row:
 align-content: bottom-left
 width: fill-container
-spacing.fixed.px: 4
+spacing.fixed.px: 12
 
 -- nav-lists:
 for: obj in $testimonials-card-desktop.testimonials
