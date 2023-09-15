@@ -1,6 +1,8 @@
 -- import: fastn-community.github.io/testimonial-doc/docs
 -- import: fastn-community.github.io/midnight-rush-testimonial
 -- import: fastn-community.github.io/testimonial-doc/data
+export: testimonial
+
 -- import: fastn-community.github.io/midnight-rush-testimonial/components
 
 
